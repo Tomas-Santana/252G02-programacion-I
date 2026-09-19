@@ -1,0 +1,10 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Programación I"
+
+format:
+  html:
+    toc: false

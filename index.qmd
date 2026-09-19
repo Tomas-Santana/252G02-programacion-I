@@ -1,0 +1,43 @@
+---
+title: "Programación I"
+subtitle: "Material de la asignatura"
+---
+
+## Inicio rápido
+
+::: {.callout-note}
+### Primera clase de laboratorio
+
+1. Descarga el compilador portátil.
+2. Descarga el Laboratorio 1.
+3. Extrae ambos archivos.
+4. Abre la carpeta del laboratorio en Visual Studio Code.
+
+:::
+
+[Descargar compilador portátil](https://github.com/skeeto/w64devkit/releases/download/v2.10.0/w64devkit-x64-2.10.0.7z.exe)
+
+[Descargar Laboratorio 1](labs/01-introduccion.zip)
+
+
+## Sílabos
+
+- [Sílabo de teoría](notes/00-silabo-lab.pdf)
+- [Sílabo de laboratorio](files/00-silabo-lab.pdf)
+
+
+## Laboratorios
+
+| Laboratorio | Contenido | Descarga |
+|---|---|---|
+| Laboratorio 1 | Entorno de desarrollo y primer programa | [Descargar](labs/lab-01.zip) |
+| Laboratorio 2 | Variables y operaciones | Proximamente... |
+
+
+## Herramientas
+
+### Compilador portátil
+
+Para utilizar en las computadoras del laboratorio de la universidad.
+
+[Descargar compilador C++](files/cpp-portable.zip)

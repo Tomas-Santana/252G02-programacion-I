@@ -30,8 +30,8 @@ subtitle: "Material de la asignatura"
 
 | Laboratorio | Contenido | Descarga |
 |---|---|---|
-| Laboratorio 1 | Entorno de desarrollo y primer programa | [Descargar](labs/lab-01.zip) |
-| Laboratorio 2 | Variables y operaciones | Proximamente... |
+| Laboratorio 1 | Entorno de desarrollo y primer programa | [Descargar](labs/01-introduccion.zip) |
+| Laboratorio 2 | Variables y operaciones | [Descargar](labs/02-variables.zip) |
 
 
 ## Herramientas

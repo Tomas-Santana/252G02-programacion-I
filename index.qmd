@@ -40,4 +40,4 @@ subtitle: "Material de la asignatura"
 
 Para utilizar en las computadoras del laboratorio de la universidad.
 
-[Descargar compilador C++](files/cpp-portable.zip)
+[Descargar compilador portátil](https://github.com/skeeto/w64devkit/releases/download/v2.10.0/w64devkit-x64-2.10.0.7z.exe)

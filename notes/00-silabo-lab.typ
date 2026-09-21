@@ -87,10 +87,6 @@ La nota definitiva del curso se obtiene como el promedio de la nota de teoría y
 $text("Nota Definitiva") = frac(text("Nota de Teoría") + text("Nota de Práctica"), 2)$
 ]
 
-= Honestidad académica
-
-Todas las actividades de los estudiantes deben ser originales. De ocurrir una falta o plagio se recibirá automáticamente la nota de cero en dicha evaluación, se citará a los responsables a la Coordinación de Pregrado y se elevará el informe respectivo a la Facultad con copia a la Dirección Académica. El uso de herramientas de IA generativa, cuando se permita, debe ser declarado explícitamente.
-
 = Política de entregas
 
 == Para trabajos y tareas entregadas virtualmente

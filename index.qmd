@@ -22,8 +22,8 @@ subtitle: "Material de la asignatura"
 
 ## Sílabos
 
-- [Sílabo de teoría](notes/00-silabo-lab.pdf)
-- [Sílabo de laboratorio](files/00-silabo-lab.pdf)
+- [Sílabo de teoría](notes/00-silabo-teoria.pdf)
+- [Sílabo de laboratorio](notes/00-silabo-lab.pdf)
 
 
 ## Laboratorios

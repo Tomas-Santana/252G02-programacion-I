@@ -125,7 +125,7 @@ $text("Nota Definitiva") = frac(text("Nota de Teoría") + text("Nota de Práctic
 Los estudiantes tendrán derecho a retrasar la fecha de entrega de una única tarea o trabajo, siguiendo las siguientes normas:
 - Para entregas virtuales, el comodín puede ser utilizado para retrasar la entrega de una tarea o trabajo hasta 48 horas después de la fecha de entrega original, sin penalización. No se extenderá la fecha límite de entrega más allá de las 48 horas posteriores a la fecha original.
 - Para entregas en clase, el comodín puede ser utilizado para retrasar la entrega de una tarea o trabajo hasta la clase siguiente, sin penalización. No será posible utilizar el comodín para retrasar la entrega en la última clase del periodo académico.
-- Para exposiciones y presentaciones, el comodín puede ser utilizado para retrasar la presentación hasta la clase siguiente. Para este caso, el uso debe ser aprobado previamente por el profesor.
+- Para exposiciones, presentaciones, talleres y exámenes, el comodín puede ser utilizado para retrasar la presentación hasta la clase siguiente. Para este caso, el uso debe ser aprobado previamente por el profesor.
 - Para trabajos en grupo, podrá aplicarse siempre que al menos un integrante del equipo lo tenga disponible. Su uso consumirá el comodín de todos los miembros del grupo que aún lo conserven.
 
 

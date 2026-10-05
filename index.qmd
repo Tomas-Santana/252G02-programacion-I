@@ -6,7 +6,6 @@ subtitle: "Material de la asignatura"
 ## Inicio rápido
 
 ::: {.callout-note}
-### Primera clase de laboratorio
 
 1. Descarga el compilador portátil.
 2. Descarga el Laboratorio 2.

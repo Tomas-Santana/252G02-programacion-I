@@ -9,7 +9,7 @@ subtitle: "Material de la asignatura"
 ### Primera clase de laboratorio
 
 1. Descarga el compilador portátil.
-2. Descarga el Laboratorio 1.
+2. Descarga el Laboratorio 2.
 3. Extrae ambos archivos.
 4. Abre la carpeta del laboratorio en Visual Studio Code.
 
@@ -17,7 +17,7 @@ subtitle: "Material de la asignatura"
 
 [Descargar compilador portátil](https://github.com/skeeto/w64devkit/releases/download/v2.10.0/w64devkit-x64-2.10.0.7z.exe)
 
-[Descargar Laboratorio 1](labs/01-introduccion.zip)
+[Descargar Laboratorio 2](labs/02-variables.zip)
 
 
 ## Sílabos
@@ -32,6 +32,7 @@ subtitle: "Material de la asignatura"
 |---|---|---|
 | Laboratorio 1 | Entorno de desarrollo y primer programa | [Descargar](labs/01-introduccion.zip) |
 | Laboratorio 2 | Variables y operaciones | [Descargar](labs/02-variables.zip) |
+| Laboratorio 3 | Condicionales | [Descargar](labs/03-condicionales.zip) |
 
 
 ## Herramientas
@@ -41,3 +42,9 @@ subtitle: "Material de la asignatura"
 Para utilizar en las computadoras del laboratorio de la universidad.
 
 [Descargar compilador portátil](https://github.com/skeeto/w64devkit/releases/download/v2.10.0/w64devkit-x64-2.10.0.7z.exe)
+
+### Visual Studio Code
+
+Editor de código fuente recomendado para la asignatura.
+
+[Descargar Visual Studio Code](https://code.visualstudio.com/download)

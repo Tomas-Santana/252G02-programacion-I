@@ -7,7 +7,7 @@ subtitle: "Material de la asignatura"
 
 ::: {.callout-note}
 
-1. Descarga el Laboratorio 2.
+1. Descarga el Laboratorio 4.
 2. Extrae la carpeta en el escritorio o descargas.
 3. Abre la carpeta del laboratorio en Visual Studio Code.
 

@@ -7,16 +7,13 @@ subtitle: "Material de la asignatura"
 
 ::: {.callout-note}
 
-1. Descarga el compilador portátil.
-2. Descarga el Laboratorio 2.
-3. Extrae ambos archivos.
-4. Abre la carpeta del laboratorio en Visual Studio Code.
+1. Descarga el Laboratorio 2.
+2. Extrae la carpeta en el escritorio o descargas.
+3. Abre la carpeta del laboratorio en Visual Studio Code.
 
 :::
 
-[Descargar compilador portátil](https://github.com/skeeto/w64devkit/releases/download/v2.10.0/w64devkit-x64-2.10.0.7z.exe)
-
-[Descargar Laboratorio 2](labs/02-variables.zip)
+[Descargar Laboratorio 4](https://drive.google.com/file/d/1qNCWtZwTfrRalb-Kgqaat04TDC_CwS6w/view?usp=sharing)
 
 
 ## Sílabos
@@ -32,6 +29,8 @@ subtitle: "Material de la asignatura"
 | Laboratorio 1 | Entorno de desarrollo y primer programa | [Descargar](labs/01-introduccion.zip) |
 | Laboratorio 2 | Variables y operaciones | [Descargar](labs/02-variables.zip) |
 | Laboratorio 3 | Condicionales | [Descargar](labs/03-condicionales.zip) |
+| Laboratorio 4 | Ciclos | [Descargar](labs/04-ciclos.zip) |
+| Laboratorio 5 | Ciclos (parte 2), menús y funciones | [Descargar](labs/05-ciclos-menus.zip) |
 
 
 ## Herramientas

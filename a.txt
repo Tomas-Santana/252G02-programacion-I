@@ -1,0 +1,5 @@
+1. Entrar en uru.tomassantana.com/p1
+2. Descargar  laboratorio 4
+3. Extraer ambas carpetas en el escritorio o descargas
+4. Abrir la carpeta "04-ciclos" en vscode
+5. Abrir una terminal usando el atajo Ctrl + ñ y escribir "init"

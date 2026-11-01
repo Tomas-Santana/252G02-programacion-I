@@ -1,0 +1,65 @@
+{
+  // Tareas de VS Code para la Tarea 2.
+  // Uso: Terminal > Ejecutar tarea...  (o Ctrl+Shift+B / Cmd+Shift+B para
+  // correr todos los tests).
+  "version": "2.0.0",
+  "options": {
+    "cwd": "${workspaceFolder}"
+  },
+  "windows": {
+    "options": {
+      "cwd": "${workspaceFolder}",
+      "env": {
+        // Usa el compilador portátil w64devkit que está dentro de la carpeta.
+        "PATH": "${workspaceFolder}\\w64devkit\\bin;${env:PATH}"
+      }
+    }
+  },
+  "tasks": [
+    {
+      "label": "Compilar evaluador",
+      "type": "shell",
+      "command": "g++",
+      "args": ["-std=c++17", "-O2", "evaluar.cpp", "-o", "evaluar"],
+      "problemMatcher": [],
+      "hide": true,
+      "presentation": { "reveal": "silent", "clear": true }
+    },
+    {
+      "label": "Probar todos los ejercicios",
+      "type": "shell",
+      "command": "./evaluar",
+      "windows": { "command": ".\\evaluar.exe" },
+      "dependsOn": "Compilar evaluador",
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "focus": true, "clear": true }
+    },
+    {
+      "label": "Probar un ejercicio",
+      "type": "shell",
+      "command": "./evaluar",
+      "windows": { "command": ".\\evaluar.exe" },
+      "args": ["${input:ejercicio}"],
+      "dependsOn": "Compilar evaluador",
+      "problemMatcher": [],
+      "group": "test",
+      "presentation": { "reveal": "always", "focus": true, "clear": true }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "ejercicio",
+      "type": "pickString",
+      "description": "¿Qué ejercicio quieres probar?",
+      "options": [
+        { "label": "0 - Ejemplo resuelto (suma y pares)", "value": "0" },
+        { "label": "1 - Ventas del día", "value": "1" },
+        { "label": "2 - Juego de fichas", "value": "2" },
+        { "label": "3 - Máquina expendedora", "value": "3" },
+        { "label": "4 - Analizador de números", "value": "4" }
+      ],
+      "default": "0"
+    }
+  ]
+}

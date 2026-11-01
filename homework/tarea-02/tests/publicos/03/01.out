@@ -1,0 +1,12 @@
+Credito: 5
+Entregado: jugo
+Credito: 2
+Error: credito insuficiente
+Credito: 3
+Entregado: galletas
+Credito: 1
+Devuelto: 1
+Error: billete invalido
+Error: producto invalido
+Vendidos: 2
+Recaudado: 5

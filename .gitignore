@@ -1,2 +1,7 @@
 /.quarto/
 **/*.quarto_ipynb
+
+# Tareas con material privado (tests, soluciones, entregas)
+/homework/tarea-[0-9][0-9]-correccion/
+lab-projects/**/testing-grounds/
+lab-projects/**/proyecto[0-9].cpp

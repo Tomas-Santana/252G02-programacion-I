@@ -7,13 +7,13 @@ subtitle: "Material de la asignatura"
 
 ::: {.callout-note}
 
-1. Descarga el Laboratorio 4.
+1. Descarga el Laboratorio 5.
 2. Extrae la carpeta en el escritorio o descargas.
 3. Abre la carpeta del laboratorio en Visual Studio Code.
 
 :::
 
-[Descargar Laboratorio 4](https://drive.google.com/file/d/1qNCWtZwTfrRalb-Kgqaat04TDC_CwS6w/view?usp=sharing)
+[Descargar Laboratorio 5](https://drive.google.com/file/d/1J8hVBvOdkhV8Y1WHC9SJ2zdV3CFV5-IM/view?usp=sharing)
 
 
 ## Sílabos

@@ -31,6 +31,8 @@ subtitle: "Material de la asignatura"
 | Laboratorio 3 | Condicionales | [Descargar](labs/03-condicionales.zip) |
 | Laboratorio 4 | Ciclos | [Descargar](labs/04-ciclos.zip) |
 | Laboratorio 5 | Ciclos (parte 2), menús y funciones | [Descargar](labs/05-ciclos-menus.zip) |
+| Laboratorio 6 | Arreglos | [Descargar](labs/06-arreglos.zip) |
+| Laboratorio 7 | Structs | [Descargar](labs/07-structs.zip) |
 
 
 ## Herramientas

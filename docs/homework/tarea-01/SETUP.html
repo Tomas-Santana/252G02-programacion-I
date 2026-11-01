@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>setup – Programación I</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-deae0c18f5b5cd7b9158b1169a045e04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="guía-de-instalación-programación-i" class="level1">
+<h1>Guía de instalación — Programación I</h1>
+<p>Para hacer las tareas necesitas dos programas:</p>
+<ul>
+<li><strong>Visual Studio Code (VS Code):</strong> el editor donde escribes el código.</li>
+<li><strong>Un compilador de C++:</strong> el programa que convierte tu código en un programa que se puede ejecutar. En Windows usarás el compilador portátil <strong>w64devkit</strong>; en macOS, las herramientas de desarrollo de Apple.</li>
+</ul>
+<p>Todo es gratuito y toma unos 15 minutos. Hazlo apenas recibas la tarea, no el día de la entrega: si algo falla, tendrás tiempo para preguntar.</p>
+<section id="parte-1.-instalar-visual-studio-code" class="level2">
+<h2 class="anchored" data-anchor-id="parte-1.-instalar-visual-studio-code">Parte 1. Instalar Visual Studio Code</h2>
+<p>Entra a la página del curso, <strong>uru.tomassantana.com/p1</strong>, y baja hasta la sección <strong>Herramientas</strong>. Haz clic en <strong>Descargar Visual Studio Code</strong>. También puedes ir directamente a <strong>code.visualstudio.com/download</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/setup_curso_herramientas.png" class="img-fluid figure-img"></p>
+<figcaption>Sección Herramientas de la página del curso</figcaption>
+</figure>
+</div>
+<section id="en-windows" class="level3">
+<h3 class="anchored" data-anchor-id="en-windows">En Windows</h3>
+<p><strong>Paso 1.</strong> La página detecta tu sistema operativo y muestra primero el tuyo. En Windows, haz clic en el botón azul <strong>Windows</strong>. Se descarga un instalador llamado parecido a <code>VSCodeUserSetup-x64-….exe</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/setup_vscode_windows.png" class="img-fluid figure-img"></p>
+<figcaption>Página de descarga de VS Code con el botón Windows resaltado</figcaption>
+</figure>
+</div>
+<p><strong>Paso 2.</strong> Abre el archivo descargado (en la carpeta <strong>Descargas</strong>).</p>
+<p><strong>Paso 3.</strong> Acepta el acuerdo de licencia y pulsa <strong>Siguiente</strong> en cada pantalla. En <strong>Tareas adicionales</strong>, deja marcada la opción <strong>Agregar a PATH</strong>. Te conviene marcar también <strong>Agregar la acción “Abrir con Code” al menú contextual de directorio</strong>: así podrás abrir la carpeta de una tarea con clic derecho.</p>
+<p><strong>Paso 4.</strong> Pulsa <strong>Instalar</strong> y, al terminar, <strong>Finalizar</strong>.</p>
+</section>
+<section id="en-macos" class="level3">
+<h3 class="anchored" data-anchor-id="en-macos">En macOS</h3>
+<p><strong>Paso 1.</strong> La página de descarga detecta tu sistema operativo y muestra primero el tuyo. En una Mac, el primer recuadro será <strong>macOS</strong>: haz clic en su botón <strong>Mac Universal</strong>, que funciona tanto en las Mac con procesador Intel como en las de Apple (M1, M2…). Se descarga un archivo <code>.dmg</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/setup_vscode_macos.png" class="img-fluid figure-img"></p>
+<figcaption>Recuadro macOS de la página de descarga con el botón Mac Universal resaltado</figcaption>
+</figure>
+</div>
+<p>La captura se tomó desde Windows, por eso el recuadro de macOS aparece como segunda opción y con el botón gris. En tu Mac estará arriba y con el botón azul, pero es el mismo botón.</p>
+<p><strong>Paso 2.</strong> Abre el archivo <code>.dmg</code> descargado (en la carpeta <strong>Descargas</strong>). Se abre una ventana con el ícono de <strong>Visual Studio Code</strong>.</p>
+<p><strong>Paso 3.</strong> Arrastra <strong>Visual Studio Code</strong> a la carpeta <strong>Aplicaciones</strong>.</p>
+<p><strong>Paso 4.</strong> Abre VS Code desde <strong>Aplicaciones</strong> con doble clic. Si macOS pregunta si quieres abrir una aplicación descargada de Internet, pulsa <strong>Abrir</strong>. Si VS Code pide acceso a tu calendario, contactos o fotos, pulsa <strong>No permitir</strong>: no lo necesita.</p>
+<p>Si quieres tenerlo a mano, haz clic derecho (o Control + clic) en su ícono del Dock y elige <strong>Opciones &gt; Mantener en el Dock</strong>.</p>
+</section>
+</section>
+<section id="parte-2.-instalar-el-compilador" class="level2">
+<h2 class="anchored" data-anchor-id="parte-2.-instalar-el-compilador">Parte 2. Instalar el compilador</h2>
+<section id="en-windows-compilador-portátil-w64devkit" class="level3">
+<h3 class="anchored" data-anchor-id="en-windows-compilador-portátil-w64devkit">En Windows: compilador portátil (w64devkit)</h3>
+<p>El compilador portátil no se instala: es una carpeta que se coloca <strong>dentro de la carpeta de la tarea</strong>. VS Code ya está configurado para buscarlo ahí.</p>
+<p><strong>Paso 1.</strong> Descarga y descomprime la carpeta de la tarea, por ejemplo <code>tarea-01</code>.</p>
+<p><strong>Paso 2.</strong> En la página del curso, <strong>uru.tomassantana.com/p1</strong>, haz clic en <strong>Descargar compilador portátil</strong>. Se descarga el archivo <code>w64devkit-x64-2.10.0.7z.exe</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/setup_curso_compilador.png" class="img-fluid figure-img"></p>
+<figcaption>Página del curso con el enlace Descargar compilador portátil resaltado</figcaption>
+</figure>
+</div>
+<p><strong>Paso 3.</strong> Mueve ese archivo <strong>a la carpeta de la tarea</strong>, junto a <code>README.md</code> y los archivos <code>.cpp</code>.</p>
+<p><strong>Paso 4.</strong> Haz doble clic en el archivo. Es un archivo autoextraíble: se abre una pequeña ventana que pregunta dónde extraer. Deja la carpeta que propone (la de la tarea) y pulsa <strong>Extract</strong>.</p>
+<p>Si Windows muestra el aviso <strong>“Windows protegió su PC”</strong>, pulsa <strong>Más información</strong> y luego <strong>Ejecutar de todas formas</strong>. Hazlo solo con el archivo descargado desde la página del curso.</p>
+<p><strong>Paso 5.</strong> Al terminar aparece una carpeta nueva llamada <code>w64devkit</code>. Ya puedes borrar el archivo <code>.exe</code>.</p>
+<p>La carpeta de la tarea debe quedar así, con <code>w64devkit</code> al mismo nivel que los ejercicios y con la carpeta <code>bin</code> dentro de <code>w64devkit</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/setup_estructura_carpeta.png" class="img-fluid figure-img"></p>
+<figcaption>Carpeta de la tarea con w64devkit y bin resaltados</figcaption>
+</figure>
+</div>
+<p>Revisa que no haya quedado una carpeta dentro de otra, como <code>w64devkit/w64devkit/bin</code>: en ese caso, VS Code no encontrará el compilador.</p>
+<p><strong>Para las próximas tareas:</strong> cada tarea necesita su propia copia de <code>w64devkit</code> adentro. Copia la carpeta <code>w64devkit</code> de una tarea a la siguiente: no hace falta volver a descargarla.</p>
+</section>
+<section id="en-macos-herramientas-de-desarrollo-de-apple" class="level3">
+<h3 class="anchored" data-anchor-id="en-macos-herramientas-de-desarrollo-de-apple">En macOS: herramientas de desarrollo de Apple</h3>
+<p><strong>Paso 1.</strong> Abre la aplicación <strong>Terminal</strong>: pulsa <code>Cmd+Espacio</code>, escribe <code>Terminal</code> y pulsa <code>Enter</code>.</p>
+<p><strong>Paso 2.</strong> Escribe el siguiente comando y pulsa <code>Enter</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Paso 3.</strong> Aparece una ventana que pregunta si quieres instalar las herramientas. Pulsa <strong>Instalar</strong> y acepta la licencia. La descarga puede tardar varios minutos.</p>
+<p>Si la Terminal responde que las herramientas ya están instaladas (<em>command line tools are already installed</em>), no tienes que hacer nada más.</p>
+<p><strong>Paso 4.</strong> Cuando termine, comprueba la instalación escribiendo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Debe aparecer un texto que empieza con <strong>Apple clang version</strong>. En macOS, <code>g++</code> es otro nombre del compilador de Apple, y sirve igual para el curso.</p>
+</section>
+</section>
+<section id="parte-3.-comprobar-que-todo-funciona" class="level2">
+<h2 class="anchored" data-anchor-id="parte-3.-comprobar-que-todo-funciona">Parte 3. Comprobar que todo funciona</h2>
+<p><strong>Paso 1.</strong> Abre VS Code y ve a <strong>File &gt; Open Folder…</strong> (<em>Archivo &gt; Abrir carpeta…</em>). Elige la carpeta <strong>de la tarea</strong> (no un archivo suelto ni la carpeta Descargas completa).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/vscode_1_abrir_carpeta.png" class="img-fluid figure-img"></p>
+<figcaption>Menú File con la opción Open Folder resaltada</figcaption>
+</figure>
+</div>
+<p><strong>Paso 2.</strong> Ve a <strong>Terminal &gt; Run Task…</strong> (<em>Terminal &gt; Ejecutar tarea…</em>), elige <strong>Probar un ejercicio</strong> y luego el <strong>0</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/vscode_3_menu_terminal.png" class="img-fluid figure-img"></p>
+<figcaption>Menú Terminal con la opción Run Task resaltada</figcaption>
+</figure>
+</div>
+<p><strong>Paso 3.</strong> En la terminal, en la parte de abajo, deberías ver <code>OK</code> en los seis casos y <code>Total: 6/6</code>. Si es así, todo está listo para empezar la tarea.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/vscode_6_resultado_ok.png" class="img-fluid figure-img"></p>
+<figcaption>Terminal con el ejercicio 0 aprobado</figcaption>
+</figure>
+</div>
+<p>El README de cada tarea explica con más detalle cómo probar los ejercicios.</p>
+</section>
+<section id="problemas-frecuentes" class="level2">
+<h2 class="anchored" data-anchor-id="problemas-frecuentes">Problemas frecuentes</h2>
+<p><strong>“No se encontró el compilador g++” (Windows).</strong> VS Code no encuentra la carpeta <code>w64devkit</code>. Revisa que:</p>
+<ul>
+<li><code>w64devkit</code> esté <strong>dentro</strong> de la carpeta de la tarea, y que dentro esté <code>bin</code> (no <code>w64devkit/w64devkit/bin</code>);</li>
+<li>hayas abierto en VS Code la carpeta de la tarea, la que contiene <code>w64devkit</code>, <code>.vscode</code> y los ejercicios.</li>
+</ul>
+<p><strong>“No se encontró el compilador g++” o “xcrun: error: invalid active developer path” (macOS).</strong> Las herramientas de Apple no están instaladas, o una actualización de macOS las desinstaló. Vuelve a ejecutar <code>xcode-select --install</code>.</p>
+<p><strong>No aparecen las tareas “Probar un ejercicio” ni “Probar todos los ejercicios”.</strong> Abriste un archivo suelto en lugar de la carpeta. Usa <strong>File &gt; Open Folder…</strong> y elige la carpeta de la tarea.</p>
+<p><strong>No se ve la carpeta <code>.vscode</code>.</strong> Windows y macOS ocultan las carpetas cuyo nombre empieza con un punto, pero VS Code sí las muestra en el panel <strong>Explorer</strong>. Si no aparece ahí, la carpeta de la tarea no se descomprimió completa: vuelve a descomprimirla.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

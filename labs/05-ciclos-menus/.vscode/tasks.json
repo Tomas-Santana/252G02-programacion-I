@@ -1,40 +1,37 @@
 {
-  "version": "2.0.0",
+  "version": "0.1.0",
+  "command": "${workspaceRoot}\\w64devkit\\bin\\g++.exe",
+  "isShellCommand": false,
+  "showOutput": "always",
+  "suppressTaskName": true,
+  "options": {
+    "env": {
+      "PATH": "${workspaceRoot}\\w64devkit\\bin;${env.PATH}"
+    }
+  },
   "tasks": [
     {
-      "label": "Compilar",
-      "type": "process",
-      "command": "${workspaceFolder}\\w64devkit\\bin\\g++.exe",
+      "taskName": "Compilar",
       "args": [
         "${file}",
         "-o",
         "${fileDirname}\\${fileBasenameNoExtension}.exe"
       ],
-      "options": {
-        "env": {
-          "PATH": "${workspaceFolder}\\w64devkit\\bin;${env:PATH}"
-        }
-      },
-      "problemMatcher": "$gcc",
-      "presentation": {
-        "reveal": "always",
-        "clear": true
-      }
+      "problemMatcher": "$gcc"
     },
     {
-      "label": "Compilar y ejecutar",
-      "type": "process",
-      "command": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-      "dependsOn": "Compilar",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "focus": true
-      },
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
+      "taskName": "Compilar y ejecutar",
+      "isBuildCommand": true,
+      "isShellCommand": true,
+      "command": "${workspaceRoot}\\w64devkit\\bin\\g++.exe",
+      "args": [
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe",
+        "&&",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "problemMatcher": "$gcc"
     }
   ]
 }

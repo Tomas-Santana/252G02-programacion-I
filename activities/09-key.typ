@@ -58,13 +58,6 @@
   spacing: (above: 10pt, below: 10pt),
 )
 
-== Cómo corregir
-
-- Corregir con un lápiz o bolígrafo *de otro color*, para distinguir lo resuelto de lo corregido.
-- No borrar lo resuelto: tachar y escribir la corrección al lado.
-- En los ejercicios de escribir código, una solución distinta también puede estar bien. Compararla paso a paso: ¿da el resultado esperado con los mismos datos?
-- Al final, completar la tabla de autoevaluación de la última página.
-
 = Ejercicios obligatorios
 
 == Ejercicio 1: El goleador
@@ -188,40 +181,3 @@ Promedios del equipo original: Leo 0.70, Ana 1.33, Juan 0.29, Sara 0.75. Devuelv
 *Detalle:* una función puede devolver un `struct` completo, igual que devuelve un `int`. Quien la llama puede guardarlo: `Jugador m = mejorPromedio(equipo, N);` y luego usar `m.nombre`.
 
 #pagebreak(weak: true)
-
-== Autoevaluación
-
-Marcar con una ✗ el resultado de cada ejercicio.
-
-#table(
-  columns: (1fr, 2.2cm, 2.8cm, 3cm),
-  rows: (auto,) + (0.8cm,) * 8,
-  align: (left + horizon, center + horizon, center + horizon, center + horizon),
-  table.header([*Ejercicio*], [*Bien*], [*Con errores*], [*Sin resolver*]),
-  [1\. Función `posicionGoleador`], [], [], [],
-  [2\. Seguimiento de `buscarJugador`], [], [], [],
-  [3a. Copiar un struct], [], [], [],
-  [3b. Struct por valor y por referencia], [], [], [],
-  [3c. Enteros por valor y por referencia], [], [], [],
-  [4\. Encontrar los errores], [], [], [],
-  [5\. Registrar un partido], [], [], [],
-  [6\. Reto], [], [], [],
-)
-
-#v(0.5cm)
-
-*Si hubo errores, repasar:*
-
-#table(
-  columns: (auto, 1fr),
-  table.header([*Ejercicio*], [*Qué repasar*]),
-  [1, 2], [Máximo y búsqueda en un arreglo de struct (`04_arreglo_structs.cpp`, `05_funciones_struct.cpp`).],
-  [3a], [La copia de structs (`03_struct_basico.cpp`).],
-  [3b, 3c, 5], [Paso por valor y por referencia (`06_paso_por_referencia.cpp`).],
-  [4], [La definición del struct y el acceso `arreglo[i].campo` (`03_struct_basico.cpp`, `04_arreglo_structs.cpp`).],
-  [5, 6], [El promedio sin división entera (semana 8) y las funciones con struct.],
-)
-
-Dudas para preguntar en la próxima clase:
-
-#lineas(3)

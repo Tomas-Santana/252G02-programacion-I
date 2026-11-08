@@ -17,7 +17,6 @@
   doc
 }
 
-// Renglones para escribir a mano
 #let lineas(n) = {
   for _ in range(n) {
     v(0.65cm)
@@ -26,7 +25,6 @@
   v(0.3cm)
 }
 
-// Recuadro de una línea para una respuesta corta
 #let respuesta(ancho: 6cm) = box(
   width: ancho,
   height: 0.7cm,
@@ -52,7 +50,7 @@
 #show: estilo
 
 #maketitle(
-  title: "Actividad: Strings",
+  title: "Actividad: Estructuras y paso por referencia",
   authors: ("Programación I, Semana 9",),
   spacing: (above: 10pt, below: 10pt),
 )
@@ -65,41 +63,58 @@ Sección: #respuesta(ancho: 3cm)
 Esta actividad *no tiene nota*.
 #v(0.2cm)
 
-= Ejercicios obligatorios
-
-== Ejercicio 1: Contar una letra
-
-Completar los espacios para que la función cuente cuántas veces aparece el carácter `c` en el string `s`.
-
-#pista[es el mismo contador de la semana 8. Revisar las comillas.]
+*Datos para todos los ejercicios:* un equipo de fútbol.
 
 ```cpp
-int contarLetra(std::string s, char c) {
-    int n = ______________;
-    int cuenta = ______;
-    for (int i = ____; i < ____; i++) {
-        if (____________________) {
-            ____________________;
+struct Jugador {
+    std::string nombre;
+    int goles;
+    int partidos;
+};
+
+const int N = 4;
+Jugador equipo[N] = {
+    {"Leo", 7, 10},     // 0
+    {"Ana", 8, 6},      // 1
+    {"Juan", 2, 7},     // 2
+    {"Sara", 9, 12}     // 3
+};
+```
+
+= Ejercicios obligatorios
+
+== Ejercicio 1: El goleador
+
+Completar los espacios para que la función devuelva la *posición* del jugador con más goles.
+
+#pista[es el máximo de la clase, aplicado a un campo. Se guarda la posición, no la cantidad de goles.]
+
+```cpp
+int posicionGoleador(Jugador e[], int n) {
+    int mejor = ______;
+    for (int i = 1; i < n; i++) {
+        if (________________ > ________________) {
+            mejor = ______;
         }
     }
-    return __________;
+    return mejor;
 }
 ```
 
-#esperado[`contarLetra("banana", 'a')` devuelve *3* y `contarLetra("banana", 'n')` devuelve *2*.]
+#esperado[`posicionGoleador(equipo, N)` devuelve *3*.]
 
-Escribir la línea de `main` que imprime cuántas letras `a` tiene `"banana"`:
+Escribir el código de `main` que imprime el *nombre* del goleador:
 
-#lineas(1)
+#lineas(2)
 
+#block(breakable: false)[
 == Ejercicio 2: Seguimiento
 
 ```cpp
-int buscarLetra(std::string s, char c) {
-    int n = s.size();
+int buscarJugador(Jugador e[], int n, std::string nombre) {
     int pos = -1;
     for (int i = 0; i < n && pos == -1; i++) {
-        if (s[i] == c) {
+        if (e[i].nombre == nombre) {
             pos = i;
         }
     }
@@ -107,23 +122,20 @@ int buscarLetra(std::string s, char c) {
 }
 ```
 
-#block(breakable: false)[
-Completar la tabla de seguimiento de `buscarLetra("computador", 't')`.
+Completar la tabla de seguimiento de `buscarJugador(equipo, N, "Juan")`.
 
-#esperado[la función devuelve *5*.]
+#esperado[la función devuelve *2*.]
 
 #align(center, table(
-  columns: (2.2cm, 2.2cm, 3.8cm, 2.2cm),
-  rows: (auto,) + (0.7cm,) * 7,
+  columns: (2.2cm, 3cm, 4.2cm, 2.2cm),
+  rows: (auto,) + (0.7cm,) * 5,
   align: center + horizon,
-  table.header([*`i`*], [*`s[i]`*], [*¿`s[i] == 't'`?*], [*`pos`*]),
+  table.header([*`i`*], [*`e[i].nombre`*], [*¿`== "Juan"`?*], [*`pos`*]),
   [inicio], [], [], [],
-  ..([],) * 24,
+  ..([],) * 16,
 ))
 
-¿Por qué el ciclo no llega a revisar `s[6]`?
-
-#lineas(1)
+¿Qué devuelve `buscarJugador(equipo, N, "Pepe")`? #respuesta(ancho: 3cm)
 ]
 
 == Ejercicio 3: ¿Qué imprime?
@@ -131,65 +143,91 @@ Completar la tabla de seguimiento de `buscarLetra("computador", 't')`.
 *a)*
 
 ```cpp
-std::string s = "hola";
-s[0] = 'H';
-std::cout << s << " " << s.size();
+Jugador a = {"Leo", 3, 5};
+Jugador b = a;
+b.goles = 10;
+std::cout << a.goles << " " << b.goles;
 ```
 
 Imprime: #respuesta()
 
 #block(breakable: false)[
-*b)* #pista[recordar qué ocurre con un string que se pasa por valor.]
+#grid(columns: (1fr, 1fr), gutter: 0.6cm,
+[
+*b)* #pista[observar cuál de las dos funciones tiene `&`.]
 
 ```cpp
-void cambiar(std::string s) {
-    s[0] = 'X';
+void sumarGol(Jugador j) {
+    j.goles = j.goles + 1;
+}
+
+void sumarGolRef(Jugador& j) {
+    j.goles = j.goles + 1;
 }
 
 int main() {
-    std::string p = "sol";
-    cambiar(p);
-    std::cout << p;
+    Jugador p = {"Leo", 7, 10};
+    sumarGol(p);
+    sumarGolRef(p);
+    sumarGolRef(p);
+    std::cout << p.goles;
     return 0;
 }
 ```
 
-Imprime: #respuesta()
-]
-
-#v(0.3cm)
+Imprime: #respuesta(ancho: 3cm)
+],
+[
 *c)*
 
 ```cpp
-std::string a = "ab";
-std::string b = a + "cd" + a;
-std::cout << b << " " << b[3];
-```
-
-Imprime: #respuesta()
-
-#v(0.4cm)
-#block(breakable: false)[
-== Ejercicio 4: Encontrar los errores
-
-Esta función debería contar las vocales de un string, pero tiene *4 errores*. Encerrar cada uno en un círculo y escribir al lado la corrección.
-
-#esperado[ya corregido, el programa imprime *5*.]
-
-```cpp
-int contarVocales(std::string s) {
-    int n = s.size();
-    int c;
-    for (int i = 0; i <= n; i++) {
-        if (s[i] == 'a' || s[i] == "e" || s[i] == 'i' ||
-            s[i] == 'o' || s[i] == 'u') {
-            c++;
-        }
-    }
+void f(int a, int& b) {
+    a = a + 1;
+    b = b + 1;
 }
 
 int main() {
-    std::cout << contarVocales("murcielago");
+    int x = 1;
+    int y = 1;
+    f(x, y);
+    std::cout << x << " " << y;
+    return 0;
+}
+```
+
+Imprime: #respuesta(ancho: 3cm)
+],
+)
+]
+
+#v(0.3cm)
+#block(breakable: false)[
+== Ejercicio 4: Encontrar los errores
+
+Este programa debería sumarle un gol a Leo e imprimir sus goles, pero tiene *4 errores*. Encerrar cada uno en un círculo y escribir al lado la corrección.
+
+#esperado[ya corregido, el programa imprime *8*.]
+
+```cpp
+struct Jugador {
+    std::string nombre;
+    int goles;
+    int partidos;
+}
+
+void sumarGol(Jugador j) {
+    j.goles = j.goles + 1;
+}
+
+int main() {
+    Jugador equipo[4] = {{"Leo", 7, 10}, {"Ana", 8, 6},
+                         {"Juan", 2, 7}, {"Sara", 9, 12}};
+    for (int i = 0; i < 4; i++) {
+        if (equipo[i].nombre = "Leo") {
+            sumarGol(equipo[i]);
+        }
+    }
+    std::cout << equipo.goles[0];
     return 0;
 }
 ```
@@ -198,36 +236,30 @@ int main() {
 = Ejercicios intermedios
 
 #block(breakable: false)[
-== Ejercicio 5: Palíndromo
+== Ejercicio 5: Registrar un partido
 
-Un palíndromo se lee igual de izquierda a derecha que de derecha a izquierda, como `"oso"` o `"reconocer"`. Escribir *completa* la función `bool esPalindromo(std::string s)`.
+Escribir *completas* estas dos funciones:
 
-#pista[comparar el primer carácter con el último, el segundo con el penúltimo, y así sucesivamente. Desde el final, la pareja de `s[i]` es `s[n - 1 - i]`.]
+- `void registrarPartido(Jugador& j, int golesAnotados)`: suma 1 a los partidos del jugador y le suma los goles que anotó.
+- `double promedioGoles(Jugador j)`: devuelve los goles por partido. Si el jugador no tiene partidos, devuelve 0.
 
-#esperado[`esPalindromo("reconocer")` devuelve *true* y `esPalindromo("programa")` devuelve *false*.]
+#esperado[después de `registrarPartido(equipo[2], 2)`, Juan tiene 4 goles en 8 partidos, y `promedioGoles(equipo[2])` devuelve *0.5*.]
 ]
 
 #lineas(7)
 
+¿Por qué `registrarPartido` lleva `&` y `promedioGoles` no?
+
+#lineas(2)
+
 = Reto
 
-== Ejercicio 6: Lista de nombres
+== Ejercicio 6: El mejor promedio
 
-```cpp
-const int N = 5;
-std::string nombres[N] = {"Ana", "Luis", "Andres", "Maria", "Alberto"};
-```
+Escribir la función `Jugador mejorPromedio(Jugador e[], int n)`, que devuelve el *jugador completo* (no su posición) con más goles por partido. Debe usar `promedioGoles` del ejercicio 5. Si hay empate, el primero.
 
-*a)* Escribir la función `int contarInicial(std::string nombres[], int n, char letra)`, que cuenta cuántos nombres empiezan con `letra`.
+#pista[buscar la posición como en el máximo y, al final, devolver `e[posicion]`.]
 
-#pista[`nombres[i]` es un string, y `nombres[i][0]` es su primera letra.]
-
-#esperado[`contarInicial(nombres, N, 'A')` devuelve *3*.]
-
-#lineas(5)
-
-*b)* Escribir la función `int buscarNombre(std::string nombres[], int n, std::string x)`, que devuelve la posición de `x` en el arreglo, o `-1` si no está.
-
-#esperado[con `"Maria"` devuelve *3*; con `"Pedro"` devuelve *-1*.]
+#esperado[con el `equipo` original devuelve a *Ana*. ¿Por qué no es Sara, si Sara tiene más goles?]
 
 #lineas(5)

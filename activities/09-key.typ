@@ -1,4 +1,5 @@
 #import "@preview/rubber-article:0.5.2": *
+// Estilos compartidos por la actividad y las soluciones (blanco y negro)
 
 #let estilo(doc) = {
   set text(size: 11pt, fill: black)
@@ -52,7 +53,7 @@
 #show: estilo
 
 #maketitle(
-  title: "Soluciones: Strings",
+  title: "Soluciones: Estructuras y paso por referencia",
   authors: ("Programación I, Semana 9",),
   spacing: (above: 10pt, below: 10pt),
 )
@@ -66,62 +67,63 @@
 
 = Ejercicios obligatorios
 
-== Ejercicio 1: Contar una letra
+== Ejercicio 1: El goleador
 
 ```cpp
-int contarLetra(std::string s, char c) {
-    int n = s.size();
-    int cuenta = 0;
-    for (int i = 0; i < n; i++) {
-        if (s[i] == c) {
-            cuenta++;
+int posicionGoleador(Jugador e[], int n) {
+    int mejor = 0;
+    for (int i = 1; i < n; i++) {
+        if (e[i].goles > e[mejor].goles) {
+            mejor = i;
         }
     }
-    return cuenta;
+    return mejor;
 }
 ```
 
-Línea de `main`:
+Código de `main`:
 
 ```cpp
-std::cout << contarLetra("banana", 'a');
+int g = posicionGoleador(equipo, N);
+std::cout << equipo[g].nombre;          // imprime Sara
 ```
 
-*Por qué:* se revisa cada carácter y, si es igual al buscado, el contador sube en 1.
+También es correcto en una línea: `std::cout << equipo[posicionGoleador(equipo, N)].nombre;`.
+
+*Por qué:* se compara el campo `goles` del jugador `i` con el del mejor hasta ahora. Al guardar la posición se tiene acceso a todo el registro: nombre, goles y partidos.
 
 *Errores frecuentes:*
-- `s[i] == 'c'`: compara con la letra c, no con el parámetro `c`. Sin comillas se usa la variable.
-- `contarLetra("banana", "a")`: el segundo argumento es un `char`, con comillas simples.
-- `cuenta = cuenta + s[i];`: eso es un acumulador. Aquí se necesita un contador.
+- `mejor = e[i].goles;`: guarda los goles, no la posición. Después no se puede saber el nombre.
+- `e[i].goles > mejor`: compara goles con una posición.
+- `equipo.nombre[g]`: el índice va antes del punto, `equipo[g].nombre`.
 
 #block(breakable: false)[
 == Ejercicio 2: Seguimiento
 
 #align(center, table(
-  columns: (2.2cm, 2.2cm, 3.8cm, 2.2cm),
+  columns: (2.2cm, 3cm, 4.2cm, 2.2cm),
   align: center + horizon,
-  table.header([*`i`*], [*`s[i]`*], [*¿`s[i] == 't'`?*], [*`pos`*]),
+  table.header([*`i`*], [*`e[i].nombre`*], [*¿`== "Juan"`?*], [*`pos`*]),
   [inicio], [], [], [-1],
-  [0], [c], [no], [-1],
-  [1], [o], [no], [-1],
-  [2], [m], [no], [-1],
-  [3], [p], [no], [-1],
-  [4], [u], [no], [-1],
-  [5], [t], [sí], [5],
+  [0], [Leo], [no], [-1],
+  [1], [Ana], [no], [-1],
+  [2], [Juan], [sí], [2],
 ))
 
-La función devuelve *5*.
-]
+La función devuelve *2*. Al pasar a `i = 3`, `pos` ya no es -1 y el ciclo termina sin revisar a Sara.
 
-*¿Por qué no revisa `s[6]`?* Cuando `i` pasa a valer 6, `pos` ya vale 5. La condición `pos == -1` es falsa, así que el ciclo termina. La búsqueda se detiene en cuanto encuentra la letra.
+Con `"Pepe"` revisa los 4 jugadores, no lo encuentra y devuelve *-1*.
+]
 
 == Ejercicio 3: ¿Qué imprime?
 
-*a)* Imprime `Hola 4`. Se cambió solo el carácter 0; el tamaño sigue siendo 4.
+*a)* Imprime `3 10`. `Jugador b = a;` copia todos los campos. Desde ese momento son dos jugadores independientes: cambiar `b.goles` no cambia `a.goles`.
 
-*b)* Imprime `sol`. La función recibe una *copia* del string y cambia la copia. A diferencia de un arreglo, el string original no cambia.
+*b)* Imprime `9`.
+- `sumarGol(p)` recibe una copia: le suma el gol a la copia y `p` sigue con 7.
+- Cada `sumarGolRef(p)` recibe el original: 7 pasa a 8 y luego a 9.
 
-*c)* Imprime `abcdab d`. El string `b` es `"ab" + "cd" + "ab"`, es decir `"abcdab"`. Sus índices son a(0) b(1) c(2) d(3) a(4) b(5), así que `b[3]` es `d`.
+*c)* Imprime `1 2`. `a` es una copia de `x`, así que `x` no cambia. `b` es otro nombre para `y`, así que `y` pasa a 2.
 
 == Ejercicio 4: Encontrar los errores
 
@@ -129,97 +131,97 @@ La función devuelve *5*.
   columns: (auto, 1fr, 1fr),
   align: (center, left, left),
   table.header([*N.º*], [*Error*], [*Corrección*]),
-  [1], [`int c;`: el contador no empieza en 0 y contiene basura.], [`int c = 0;`],
-  [2], [`i <= n`: en la última vuelta lee `s[n]`, fuera del string.], [`i < n`],
-  [3], [`s[i] == "e"`: compara un char con un string. No compila.], [`s[i] == 'e'`],
-  [4], [La función dice que devuelve `int`, pero no tiene `return`.], [Agregar `return c;` antes de la `}` final.],
+  [1], [Falta el punto y coma después de la llave que cierra el `struct`.], [`};`],
+  [2], [`sumarGol(Jugador j)` recibe una copia: el gol no llega al arreglo.], [`void sumarGol(Jugador& j)`],
+  [3], [`equipo[i].nombre = "Leo"` asigna en vez de comparar.], [`equipo[i].nombre == "Leo"`],
+  [4], [`equipo.goles[0]`: el índice va antes del punto.], [`equipo[0].goles`],
 )
 
-#block(breakable: false)[
-Código corregido:
-
-```cpp
-int contarVocales(std::string s) {
-    int n = s.size();
-    int c = 0;
-    for (int i = 0; i < n; i++) {
-        if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' ||
-            s[i] == 'o' || s[i] == 'u') {
-            c++;
-        }
-    }
-    return c;
-}
-```
-]
-
-Las vocales de `"murcielago"` son u, i, e, a, o: imprime *5*.
+Ya corregido, Leo pasa de 7 a 8 goles y el programa imprime *8*.
 
 = Ejercicios intermedios
 
-== Ejercicio 5: Palíndromo
+== Ejercicio 5: Registrar un partido
 
 ```cpp
-bool esPalindromo(std::string s) {
-    int n = s.size();
-    bool es = true;
-    for (int i = 0; i < n / 2; i++) {
-        if (s[i] != s[n - 1 - i]) {
-            es = false;
-        }
+void registrarPartido(Jugador& j, int golesAnotados) {
+    j.partidos = j.partidos + 1;
+    j.goles = j.goles + golesAnotados;
+}
+
+double promedioGoles(Jugador j) {
+    if (j.partidos == 0) {
+        return 0;
     }
-    return es;
+    return static_cast<double>(j.goles) / j.partidos;
 }
 ```
 
-*Por qué:* se supone que sí es palíndromo y se busca una pareja que no coincida. Basta con recorrer hasta la mitad (`n / 2`), porque cada vuelta revisa un carácter del principio y uno del final.
+Juan empieza con 2 goles en 7 partidos. Después de `registrarPartido(equipo[2], 2)` tiene 4 goles en 8 partidos, y el promedio es 4 / 8 = *0.5*.
 
-Con `"reconocer"` todas las parejas coinciden (r-r, e-e, c-c, o-o): devuelve *true*. Con `"programa"` la primera pareja ya falla (p-a): devuelve *false*.
-
-*También es correcto:* recorrer el string completo con `i < n`, que revisa cada pareja dos veces. O construir el string invertido, como en la función `invertir` de la clase, y comparar con `==`.
+*¿Por qué uno lleva `&` y el otro no?* `registrarPartido` debe *modificar* al jugador del arreglo: sin `&` cambiaría una copia. `promedioGoles` solo *lee* los campos y devuelve un resultado, así que una copia basta.
 
 *Errores frecuentes:*
-- `s[n - i]`: con `i = 0` lee `s[n]`, fuera del string. La pareja correcta es `s[n - 1 - i]`.
-- Poner `es = true` dentro del ciclo cuando una pareja coincide: borra un `false` anterior.
+- `return j.goles / j.partidos;`: división entera. 4 / 8 daría 0.
+- Olvidar el caso de 0 partidos: dividir entre 0.
 
 = Reto
 
-== Ejercicio 6: Lista de nombres
-
-#block(breakable: false)[
-*a)*
+== Ejercicio 6: El mejor promedio
 
 ```cpp
-int contarInicial(std::string nombres[], int n, char letra) {
-    int c = 0;
-    for (int i = 0; i < n; i++) {
-        if (nombres[i][0] == letra) {
-            c++;
+Jugador mejorPromedio(Jugador e[], int n) {
+    int mejor = 0;
+    for (int i = 1; i < n; i++) {
+        if (promedioGoles(e[i]) > promedioGoles(e[mejor])) {
+            mejor = i;
         }
     }
-    return c;
-}
-```
-]
-
-Empiezan con A: Ana, Andres y Alberto. Devuelve *3*.
-
-*b)*
-
-```cpp
-int buscarNombre(std::string nombres[], int n, std::string x) {
-    int pos = -1;
-    for (int i = 0; i < n && pos == -1; i++) {
-        if (nombres[i] == x) {
-            pos = i;
-        }
-    }
-    return pos;
+    return e[mejor];
 }
 ```
 
-`"Maria"` está en la posición *3*; `"Pedro"` no está y devuelve *-1*.
+Promedios del equipo original: Leo 0.70, Ana 1.33, Juan 0.29, Sara 0.75. Devuelve a *Ana*.
 
-*Detalle:* aquí `n` es un parámetro, porque se recorre un *arreglo* de strings. El arreglo no conoce su tamaño, aunque sus elementos sí. Además, `nombres[i] == x` compara strings completos con `==`, algo que con arreglos no se puede hacer.
+*¿Por qué no es Sara?* Sara tiene más goles (9), pero en 12 partidos. Ana tiene 8 goles en solo 6 partidos: anota más por partido. "Más goles" y "mejor promedio" son preguntas distintas.
+
+*Detalle:* una función puede devolver un `struct` completo, igual que devuelve un `int`. Quien la llama puede guardarlo: `Jugador m = mejorPromedio(equipo, N);` y luego usar `m.nombre`.
 
 #pagebreak(weak: true)
+
+== Autoevaluación
+
+Marcar con una ✗ el resultado de cada ejercicio.
+
+#table(
+  columns: (1fr, 2.2cm, 2.8cm, 3cm),
+  rows: (auto,) + (0.8cm,) * 8,
+  align: (left + horizon, center + horizon, center + horizon, center + horizon),
+  table.header([*Ejercicio*], [*Bien*], [*Con errores*], [*Sin resolver*]),
+  [1\. Función `posicionGoleador`], [], [], [],
+  [2\. Seguimiento de `buscarJugador`], [], [], [],
+  [3a. Copiar un struct], [], [], [],
+  [3b. Struct por valor y por referencia], [], [], [],
+  [3c. Enteros por valor y por referencia], [], [], [],
+  [4\. Encontrar los errores], [], [], [],
+  [5\. Registrar un partido], [], [], [],
+  [6\. Reto], [], [], [],
+)
+
+#v(0.5cm)
+
+*Si hubo errores, repasar:*
+
+#table(
+  columns: (auto, 1fr),
+  table.header([*Ejercicio*], [*Qué repasar*]),
+  [1, 2], [Máximo y búsqueda en un arreglo de struct (`04_arreglo_structs.cpp`, `05_funciones_struct.cpp`).],
+  [3a], [La copia de structs (`03_struct_basico.cpp`).],
+  [3b, 3c, 5], [Paso por valor y por referencia (`06_paso_por_referencia.cpp`).],
+  [4], [La definición del struct y el acceso `arreglo[i].campo` (`03_struct_basico.cpp`, `04_arreglo_structs.cpp`).],
+  [5, 6], [El promedio sin división entera (semana 8) y las funciones con struct.],
+)
+
+Dudas para preguntar en la próxima clase:
+
+#lineas(3)

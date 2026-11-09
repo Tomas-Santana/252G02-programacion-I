@@ -2,9 +2,7 @@
 #include <string>
 
 /**
- * Este programa trabaja con las notas de un curso. Es el
- * ejercicio de carnets del Lab 6, pero ahora los datos de
- * cada estudiante están en un struct.
+ * Este programa trabaja con las notas de un curso.
  *
  * El main ya está hecho. Debes completar las 3 funciones.
  *

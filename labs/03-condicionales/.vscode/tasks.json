@@ -1,0 +1,20 @@
+{
+  "version": "0.1.0",
+  "command": "compilar.bat",
+  "isShellCommand": true,
+  "showOutput": "always",
+  "suppressTaskName": true,
+  "tasks": [
+    {
+      "taskName": "Compilar",
+      "args": ["${file}"],
+      "problemMatcher": "$gcc"
+    },
+    {
+      "taskName": "Compilar y ejecutar",
+      "isBuildCommand": true,
+      "args": ["${file}", "ejecutar"],
+      "problemMatcher": "$gcc"
+    }
+  ]
+}

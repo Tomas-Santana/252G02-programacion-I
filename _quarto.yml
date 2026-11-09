@@ -5,6 +5,7 @@ project:
     - "**/*.qmd"
     - "**/*.md"
     - "!homework/*-correccion/"
+    - "!lab-projects/**/testing-grounds"
 
 website:
   title: "Programación I"

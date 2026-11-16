@@ -113,7 +113,7 @@ El programa se probará con los casos de la sección 6 y con casos adicionales q
 
 == Explicación (0 a 1)
 
-Durante la presentación, con el programa abierto en VS Code, el profesor hará preguntas sobre el código. Las preguntas pueden consistir en:
+Durante la presentación, con el programa abierto, el profesor hará preguntas sobre el código. Las preguntas pueden consistir en:
 
 - Explicar qué hace una parte específica del código y por qué se escribió de esa manera.
 - Indicar qué mostrará el programa con ciertos datos antes de ejecutarlo.

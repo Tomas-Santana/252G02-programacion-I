@@ -1,0 +1,16 @@
+Vendido: Lapiz
+Cobrado: 3.000000
+Stock: 26
+Error: stock insuficiente
+Error: producto inexistente
+Error: cantidad invalida
+Repuesto: Borrador
+Stock: 5
+Valor inventario: 47.000000
+Agotados: 0
+Vendido: Cuaderno
+Cobrado: 25.000000
+Stock: 0
+Agotados: 1
+Error: opcion invalida
+Recaudado: 28.000000

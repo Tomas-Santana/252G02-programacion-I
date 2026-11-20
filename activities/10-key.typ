@@ -42,23 +42,28 @@
 
 #show: article.with(
   lang: "es",
-  page-margins: 2cm,
+  page-margins: 1.5cm,
   page-paper: "us-letter",
   heading-numbering: none,
   header-display: false,
 )
 #show: estilo
+#show heading.where(level: 1): set text(size: 13pt)
+#show heading.where(level: 1): set block(above: 0.8em, below: 0.6em)
+#show heading.where(level: 2): set text(size: 11.5pt)
+#show heading.where(level: 2): set block(above: 1em, below: 0.6em)
 
-#maketitle(
-  title: "Soluciones: Strings",
-  authors: ("Programación I, Semana 10",),
-  spacing: (above: 10pt, below: 10pt),
-)
-
-= Ejercicios obligatorios
+#align(center)[
+  #text(size: 16pt, weight: "bold")[Soluciones: Strings] \
+  Programación I, Semana 10
+]
 
 == Ejercicio 1: Contar una letra
 
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 0.6cm,
+  [
 ```cpp
 int contarLetra(std::string s, char c) {
     int n = s.size();
@@ -71,7 +76,8 @@ int contarLetra(std::string s, char c) {
     return cuenta;
 }
 ```
-
+  ],
+  [
 Línea de `main`:
 
 ```cpp
@@ -84,12 +90,18 @@ std::cout << contarLetra("banana", 'a');
 - `s[i] == 'c'`: compara con la letra c, no con el parámetro `c`. Sin comillas se usa la variable.
 - `contarLetra("banana", "a")`: el segundo argumento es un `char`, con comillas simples.
 - `cuenta = cuenta + s[i];`: eso es un acumulador. Aquí se necesita un contador.
+  ],
+)
 
 #block(breakable: false)[
 == Ejercicio 2: Seguimiento
 
-#align(center, table(
-  columns: (2.2cm, 2.2cm, 3.8cm, 2.2cm),
+#grid(
+  columns: (auto, 1fr),
+  column-gutter: 0.6cm,
+  table(
+  columns: (1.5cm, 1.5cm, 2.9cm, 1.5cm),
+  inset: 4pt,
   align: center + horizon,
   table.header([*`i`*], [*`s[i]`*], [*¿`s[i] == 't'`?*], [*`pos`*]),
   [inicio], [], [], [-1],
@@ -99,12 +111,14 @@ std::cout << contarLetra("banana", 'a');
   [3], [p], [no], [-1],
   [4], [u], [no], [-1],
   [5], [t], [sí], [5],
-))
-
+  ),
+  [
 La función devuelve *5*.
-]
 
 *¿Por qué no revisa `s[6]`?* Cuando `i` pasa a valer 6, `pos` ya vale 5. La condición `pos == -1` es falsa, así que el ciclo termina. La búsqueda se detiene en cuanto encuentra la letra.
+  ],
+)
+]
 
 == Ejercicio 3: ¿Qué imprime?
 
@@ -127,29 +141,39 @@ La función devuelve *5*.
 )
 
 #block(breakable: false)[
-Código corregido:
-
+#grid(
+  columns: (1.2fr, 1fr),
+  column-gutter: 0.6cm,
+  [
 ```cpp
 int contarVocales(std::string s) {
     int n = s.size();
     int c = 0;
     for (int i = 0; i < n; i++) {
-        if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' ||
-            s[i] == 'o' || s[i] == 'u') {
+        if (s[i] == 'a' || s[i] == 'e' ||
+            s[i] == 'i' || s[i] == 'o' ||
+            s[i] == 'u') {
             c++;
         }
     }
     return c;
 }
 ```
-]
+  ],
+  [
+Código corregido.
 
 Las vocales de `"murcielago"` son u, i, e, a, o: imprime *5*.
-
-= Ejercicios intermedios
+  ],
+)
+]
 
 == Ejercicio 5: Palíndromo
 
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 0.6cm,
+  [
 ```cpp
 bool esPalindromo(std::string s) {
     int n = s.size();
@@ -162,55 +186,16 @@ bool esPalindromo(std::string s) {
     return es;
 }
 ```
-
+  ],
+  [
 *Por qué:* se supone que sí es palíndromo y se busca una pareja que no coincida. Basta con recorrer hasta la mitad (`n / 2`), porque cada vuelta revisa un carácter del principio y uno del final.
 
 Con `"reconocer"` todas las parejas coinciden (r-r, e-e, c-c, o-o): devuelve *true*. Con `"programa"` la primera pareja ya falla (p-a): devuelve *false*.
+  ],
+)
 
 *También es correcto:* recorrer el string completo con `i < n`, que revisa cada pareja dos veces. O construir el string invertido, como en la función `invertir` de la clase, y comparar con `==`.
 
 *Errores frecuentes:*
 - `s[n - i]`: con `i = 0` lee `s[n]`, fuera del string. La pareja correcta es `s[n - 1 - i]`.
 - Poner `es = true` dentro del ciclo cuando una pareja coincide: borra un `false` anterior.
-
-= Reto
-
-== Ejercicio 6: Lista de nombres
-
-#block(breakable: false)[
-*a)*
-
-```cpp
-int contarInicial(std::string nombres[], int n, char letra) {
-    int c = 0;
-    for (int i = 0; i < n; i++) {
-        if (nombres[i][0] == letra) {
-            c++;
-        }
-    }
-    return c;
-}
-```
-]
-
-Empiezan con A: Ana, Andres y Alberto. Devuelve *3*.
-
-*b)*
-
-```cpp
-int buscarNombre(std::string nombres[], int n, std::string x) {
-    int pos = -1;
-    for (int i = 0; i < n && pos == -1; i++) {
-        if (nombres[i] == x) {
-            pos = i;
-        }
-    }
-    return pos;
-}
-```
-
-`"Maria"` está en la posición *3*; `"Pedro"` no está y devuelve *-1*.
-
-*Detalle:* aquí `n` es un parámetro, porque se recorre un *arreglo* de strings. El arreglo no conoce su tamaño, aunque sus elementos sí. Además, `nombres[i] == x` compara strings completos con `==`, algo que con arreglos no se puede hacer.
-
-#pagebreak(weak: true)

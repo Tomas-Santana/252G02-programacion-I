@@ -3,7 +3,7 @@
 #let estilo(doc) = {
   set text(size: 11pt, fill: black)
   set par(first-line-indent: 0pt)
-  show raw: set text(font: "DejaVu Sans Mono", size: 9.5pt)
+  show raw: set text(size: 9.5pt)
   // Sin colores de resaltado: código en negro
   show raw.line: it => it.text
   show raw.where(block: true): it => block(
@@ -44,158 +44,170 @@
 
 #show: article.with(
   lang: "es",
-  page-margins: 2cm,
+  page-margins: 1.5cm,
   page-paper: "us-letter",
   heading-numbering: none,
   header-display: false,
 )
 #show: estilo
+#show heading.where(level: 1): set text(size: 13pt)
+#show heading.where(level: 1): set block(above: 0.8em, below: 0.6em)
+#show heading.where(level: 2): set text(size: 11.5pt)
+#show heading.where(level: 2): set block(above: 1em, below: 0.6em)
 
-#maketitle(
-  title: "Actividad: Strings",
-  authors: ("Programación I, Semana 10",),
-  spacing: (above: 10pt, below: 10pt),
-)
+#align(center)[
+  #text(size: 16pt, weight: "bold")[Actividad: Strings] \
+  Programación I, Semana 10
+]
 
-Nombres: #respuesta(ancho: 7cm) y #respuesta(ancho: 7cm)
-
-Sección: #respuesta(ancho: 3cm)
-
-#v(0.4cm)
-Esta actividad *no tiene nota*.
-#v(0.2cm)
-
-= Ejercicios obligatorios
+Nombres: #respuesta(ancho: 6cm) y #respuesta(ancho: 6cm) #h(1fr) Sección: #respuesta(ancho: 2.5cm)
 
 == Ejercicio 1: Contar una letra
 
-Completar los espacios para que la función cuente cuántas veces aparece el carácter `c` en el string `s`.
-
-```cpp
-int contarLetra(std::string s, char c) {
-    int n = ______________;
-    int cuenta = ______;
-    for (int i = ____; i < ____; i++) {
-        if (____________________) {
-            ____________________;
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 0.6cm,
+  [
+    ```cpp
+    int contarLetra(std::string s, char c) {
+        int n = ______________;
+        int cuenta = ______;
+        for (int i = ____; i < ____; i++) {
+            if (____________________) {
+                ____________________;
+            }
         }
+        return __________;
     }
-    return __________;
-}
-```
+    ```
+  ],
+  [
+    Completar los espacios para que la función cuente cuántas veces aparece el carácter `c` en el string `s`.
 
-#esperado[`contarLetra("banana", 'a')` devuelve *3* y `contarLetra("banana", 'n')` devuelve *2*.]
+    #esperado[`contarLetra("banana", 'a')` devuelve *3* y `contarLetra("banana", 'n')` devuelve *2*.]
 
-Escribir la línea de `main` que imprime cuántas letras `a` tiene `"banana"`:
+    Escribir la línea de `main` que imprime cuántas letras `a` tiene `"banana"`:
 
-#lineas(1)
+    #lineas(1)
+  ],
+)
 
 == Ejercicio 2: Seguimiento
 
-```cpp
-int buscarLetra(std::string s, char c) {
-    int n = s.size();
-    int pos = -1;
-    for (int i = 0; i < n && pos == -1; i++) {
-        if (s[i] == c) {
-            pos = i;
+Completar la tabla de seguimiento de `buscarLetra("computador", 't')`. #esperado[la función devuelve *5*.]
+
+#grid(
+  columns: (1fr, auto),
+  column-gutter: 0.6cm,
+  [
+    ```cpp
+    int buscarLetra(std::string s, char c) {
+        int n = s.size();
+        int pos = -1;
+        for (int i = 0; i < n && pos == -1; i++) {
+            if (s[i] == c) {
+                pos = i;
+            }
         }
+        return pos;
     }
-    return pos;
-}
-```
-
-#block(breakable: false)[
-Completar la tabla de seguimiento de `buscarLetra("computador", 't')`.
-
-#esperado[la función devuelve *5*.]
-
-#align(center, table(
-  columns: (2.2cm, 2.2cm, 3.8cm, 2.2cm),
-  rows: (auto,) + (0.7cm,) * 7,
-  align: center + horizon,
-  table.header([*`i`*], [*`s[i]`*], [*¿`s[i] == 't'`?*], [*`pos`*]),
-  [inicio], [], [], [],
-  ..([],) * 24,
-))
+    ```
+  ],
+  table(
+    columns: (1.5cm, 1.5cm, 2.9cm, 1.5cm),
+    rows: (auto,) + (0.55cm,) * 7,
+    inset: 4pt,
+    align: center + horizon,
+    table.header([*`i`*], [*`s[i]`*], [*¿`s[i] == 't'`?*], [*`pos`*]),
+    [inicio], [], [], [],
+    ..([],) * 24,
+  ),
+)
 
 ¿Por qué el ciclo no llega a revisar `s[6]`?
 
 #lineas(1)
-]
-
-== Ejercicio 3: ¿Qué imprime?
-
-*a)*
-
-```cpp
-std::string s = "hola";
-s[0] = 'H';
-std::cout << s << " " << s.size();
-```
-
-Imprime: #respuesta()
 
 #block(breakable: false)[
-*b)* #pista[recordar qué ocurre con un string que se pasa por valor.]
+== Ejercicio 3: ¿Qué imprime?
 
-```cpp
-void cambiar(std::string s) {
-    s[0] = 'X';
-}
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 0.6cm,
+  [
+    *a)*
+    ```cpp
+    std::string s = "hola";
+    s[0] = 'H';
+    std::cout << s << " " << s.size();
+    ```
+    Imprime: #respuesta(ancho: 5cm)
 
-int main() {
-    std::string p = "sol";
-    cambiar(p);
-    std::cout << p;
-    return 0;
-}
-```
+    #v(0.2cm)
+    *c)*
+    ```cpp
+    std::string a = "ab";
+    std::string b = a + "cd" + a;
+    std::cout << b << " " << b[3];
+    ```
+    Imprime: #respuesta(ancho: 5cm)
+  ],
+  [
+    *b)* _(Pista: recordar qué ocurre con un string que se pasa por valor.)_
+    ```cpp
+    void cambiar(std::string s) {
+        s[0] = 'X';
+    }
 
-Imprime: #respuesta()
+    int main() {
+        std::string p = "sol";
+        cambiar(p);
+        std::cout << p;
+        return 0;
+    }
+    ```
+    Imprime: #respuesta(ancho: 5cm)
+  ],
+)
 ]
 
-#v(0.3cm)
-*c)*
-
-```cpp
-std::string a = "ab";
-std::string b = a + "cd" + a;
-std::cout << b << " " << b[3];
-```
-
-Imprime: #respuesta()
-
-#v(0.4cm)
 #block(breakable: false)[
 == Ejercicio 4: Encontrar los errores
 
-Esta función debería contar las vocales de un string, pero tiene *4 errores*. Encerrar cada uno en un círculo y escribir al lado la corrección.
-
-#esperado[ya corregido, el programa imprime *5*.]
-
-```cpp
-int contarVocales(std::string s) {
-    int n = s.size();
-    int c;
-    for (int i = 0; i <= n; i++) {
-        if (s[i] == 'a' || s[i] == "e" || s[i] == 'i' ||
-            s[i] == 'o' || s[i] == 'u') {
-            c++;
+#grid(
+  columns: (1.2fr, 1fr),
+  column-gutter: 0.6cm,
+  [
+    ```cpp
+    int contarVocales(std::string s) {
+        int n = s.size();
+        int c;
+        for (int i = 0; i <= n; i++) {
+            if (s[i] == 'a' || s[i] == "e" ||
+                s[i] == 'i' || s[i] == 'o' ||
+                s[i] == 'u') {
+                c++;
+            }
         }
     }
-}
 
-int main() {
-    std::cout << contarVocales("murcielago");
-    return 0;
-}
-```
+    int main() {
+        std::cout << contarVocales("murcielago");
+        return 0;
+    }
+    ```
+  ],
+  [
+    Esta función debería contar las vocales de un string, pero tiene *4 errores*. Encerrar cada uno en un círculo y escribir al lado la corrección.
+
+    #esperado[ya corregido, el programa imprime *5*.]
+  ],
+)
 ]
 
-= Ejercicios intermedios
-
+#v(0.4cm)
 #block(breakable: false)[
+  
 == Ejercicio 5: Palíndromo
 
 Un palíndromo se lee igual de izquierda a derecha que de derecha a izquierda, como `"oso"` o `"reconocer"`. Escribir *completa* la función `bool esPalindromo(std::string s)`.
@@ -203,29 +215,6 @@ Un palíndromo se lee igual de izquierda a derecha que de derecha a izquierda, c
 #pista[comparar el primer carácter con el último, el segundo con el penúltimo, y así sucesivamente. Desde el final, la pareja de `s[i]` es `s[n - 1 - i]`.]
 
 #esperado[`esPalindromo("reconocer")` devuelve *true* y `esPalindromo("programa")` devuelve *false*.]
+
+#lineas(10)
 ]
-
-#lineas(7)
-
-= Reto
-
-== Ejercicio 6: Lista de nombres
-
-```cpp
-const int N = 5;
-std::string nombres[N] = {"Ana", "Luis", "Andres", "Maria", "Alberto"};
-```
-
-*a)* Escribir la función `int contarInicial(std::string nombres[], int n, char letra)`, que cuenta cuántos nombres empiezan con `letra`.
-
-#pista[`nombres[i]` es un string, y `nombres[i][0]` es su primera letra.]
-
-#esperado[`contarInicial(nombres, N, 'A')` devuelve *3*.]
-
-#lineas(5)
-
-*b)* Escribir la función `int buscarNombre(std::string nombres[], int n, std::string x)`, que devuelve la posición de `x` en el arreglo, o `-1` si no está.
-
-#esperado[con `"Maria"` devuelve *3*; con `"Pedro"` devuelve *-1*.]
-
-#lineas(5)

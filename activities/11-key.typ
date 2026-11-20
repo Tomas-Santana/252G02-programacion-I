@@ -41,20 +41,21 @@
 
 #show: article.with(
   lang: "es",
-  page-margins: 2cm,
+  page-margins: 1.5cm,
   page-paper: "us-letter",
   heading-numbering: none,
   header-display: false,
 )
 #show: estilo
+#show heading.where(level: 1): set text(size: 13pt)
+#show heading.where(level: 1): set block(above: 0.8em, below: 0.6em)
+#show heading.where(level: 2): set text(size: 11.5pt)
+#show heading.where(level: 2): set block(above: 1em, below: 0.6em)
 
-#maketitle(
-  title: "Soluciones: Punteros",
-  authors: ("Programación I, Semana 11",),
-  spacing: (above: 10pt, below: 10pt),
-)
-
-= Ejercicios obligatorios
+#align(center)[
+  #text(size: 16pt, weight: "bold")[Soluciones: Punteros] \
+  Programación I, Semana 11
+]
 
 == Ejercicio 1: Tabla de memoria
 
@@ -87,6 +88,8 @@ Al final, `*p` es `y`: imprime *15*.
 #block(breakable: false)[
 == Ejercicio 3: Intercambiar
 
+#grid(columns: (1.55fr, 1fr), column-gutter: 0.6cm,
+[
 ```cpp
 void intercambiar(int* a, int* b) {
     int temp = *a;
@@ -102,14 +105,18 @@ int main() {
     return 0;
 }
 ```
-
+],
+[
 *Por qué:* la función recibe las direcciones de `x` y de `y`, así que con `*a` y `*b` modifica las variables de `main`. `temp` guarda el valor de `x` antes de perderlo.
 
 *Errores frecuentes:*
 - `int temp = a;` o `a = b;` sin `*`: copia direcciones, no valores. Las variables de `main` no cambian.
 - `intercambiar(x, y)`: la función espera direcciones; hay que escribir `&x` y `&y`.
+],
+)
 ]
 
+#block(breakable: false)[
 == Ejercicio 4: Encontrar los errores
 
 #table(
@@ -121,16 +128,17 @@ int main() {
   [3], [`int* c = cantidad;`: a un puntero se le asigna una dirección, no un `int`.], [`int* c = &cantidad;`],
   [4], [`int* total;` no apunta a ninguna variable: `*total = ...` escribe en una dirección desconocida.], [Usar una variable: `int total = *c * 2;` y luego imprimir `total`.],
 )
+]
 
 Ya corregido, el lápiz pasa de 2 a 1, `total` es 3 × 2 = 6, y el programa imprime *1 6*.
 
 *Sobre el error 4:* también es correcto declarar `int t;` y luego `int* total = &t;`. Lo importante es que un puntero siempre apunte a una variable que existe (o sea `nullptr`) antes de usar `*`.
 
-= Ejercicios intermedios
-
 #block(breakable: false)[
 == Ejercicio 5: Cuenta bancaria
 
+#grid(columns: (1fr, 1fr), column-gutter: 0.6cm,
+[
 ```cpp
 void depositar(Cuenta* c, double monto) {
     c->saldo = c->saldo + monto;
@@ -144,53 +152,14 @@ bool retirar(Cuenta* c, double monto) {
     return true;
 }
 ```
-]
-
+],
+[
 Saldo inicial 100. `depositar(&cuenta, 50)`: 150. `retirar(&cuenta, 200)`: 200 es mayor que 150, devuelve *false* y no cambia nada. `retirar(&cuenta, 30)`: devuelve *true* y deja *120*.
 
 *Errores frecuentes:*
 - `c.saldo` en lugar de `c->saldo`.
 - Restar el monto antes de revisar si alcanza: el saldo quedaría negativo.
 - `if (monto >= c->saldo)`: con ese `>=` no se podría retirar todo el saldo.
-
-= Reto
-
-== Ejercicio 6: Buscar una cuenta
-
-#block(breakable: false)[
-*a)*
-
-```cpp
-Cuenta* buscarCuenta(Cuenta c[], int n, std::string titular) {
-    Cuenta* encontrada = nullptr;
-    for (int i = 0; i < n && encontrada == nullptr; i++) {
-        if (c[i].titular == titular) {
-            encontrada = &c[i];
-        }
-    }
-    return encontrada;
-}
-```
+],
+)
 ]
-
-Es la búsqueda de siempre, pero en lugar de `pos = -1` se usa `nullptr`, y en lugar de guardar `i` se guarda la dirección `&c[i]`.
-
-#block(breakable: false)[
-*b)*
-
-```cpp
-Cuenta* m = buscarCuenta(banco, N, "Maria");
-if (m != nullptr) {
-    depositar(m, 20);       // m ya es una dirección: sin &
-}
-```
-]
-
-El saldo de `banco[2]` pasa de 80 a *100*: el puntero apunta al elemento del arreglo, no a una copia.
-
-*Errores frecuentes:*
-- `depositar(&m, 20)`: `m` ya es un puntero. `&m` sería la dirección del puntero, que no es una `Cuenta*`.
-- Usar `m->saldo` sin revisar antes si `m` es `nullptr`.
-
-#pagebreak(weak: true)
-
